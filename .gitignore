@@ -1,0 +1,22 @@
+## Visual Studio / .NET
+bin/
+obj/
+.vs/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+## Test Results
+TestResults/
+[Tt]est[Rr]esult*
+
+## Sensitive Credentials
+cred.md
+*.key
+*.secret
+
+## OS Files
+.DS_Store
+Thumbs.db
+

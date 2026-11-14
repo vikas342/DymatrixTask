@@ -1,0 +1,57 @@
+@NotifyAiPowered_HostAddress = http://localhost:5052
+
+### 1. Low Severity (Info) - Acknowledged, Not Forwarded
+POST {{NotifyAiPowered_HostAddress}}/api/notifications
+Content-Type: application/json
+
+{
+  "source": "OrderService",
+  "level": "Info",
+  "title": "Order #54210 Processed",
+  "message": "Order #54210 was successfully placed and inventory deducted.",
+  "metadata": {
+    "orderId": "54210",
+    "amount": 250.00
+  }
+}
+
+### 2. Warning Severity - Rate Limited, AI Analyzed & Forwarded to Discord
+POST {{NotifyAiPowered_HostAddress}}/api/notifications
+Content-Type: application/json
+
+{
+  "source": "PaymentGateway",
+  "level": "Warning",
+  "title": "Stripe Gateway Elevated Latency",
+  "message": "Average latency increased to 3200ms across 12 consecutive requests in us-east-1.",
+  "metadata": {
+    "provider": "Stripe",
+    "avgLatencyMs": 3200,
+    "environment": "production"
+  }
+}
+
+### 3. Critical Severity - High Priority Alert Forwarded to Discord
+POST {{NotifyAiPowered_HostAddress}}/api/notifications
+Content-Type: application/json
+
+{
+  "source": "DatabaseCluster",
+  "level": "Critical",
+  "title": "Postgres Primary Connection Pool Exhausted",
+  "message": "Active connections reached 500/500 max limit. Incoming transactions are timing out with 504.",
+  "metadata": {
+    "cluster": "pg-primary-prod",
+    "activeConnections": 500,
+    "maxConnections": 500
+  }
+}
+
+### 4. Invalid Request (Missing Required Fields)
+POST {{NotifyAiPowered_HostAddress}}/api/notifications
+Content-Type: application/json
+
+{
+  "source": "",
+  "level": "Warning"
+}

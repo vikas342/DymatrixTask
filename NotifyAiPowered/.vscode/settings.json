@@ -1,0 +1,6 @@
+{
+  "dotnet.defaultSolution": "../NotifyAiPowered.sln",
+  "omnisharp.defaultLaunchSolution": "../NotifyAiPowered.sln",
+  "errorLens.enabled": false
+}
+
